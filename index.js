@@ -3,6 +3,7 @@ var chalk=require("chalk");
 user=readlinesync.question("Please Enter your name");
 console.log(chalk.red("Hey "+user+" Welcome to Sneha's Quiz"));
 var score=0;
+//OBJECT WITH SCORES OF OTHER FRIENDS
 var friends=[
   {
     name:"Yash",
@@ -22,6 +23,27 @@ var friends=[
   score:0
   }
   ];
+//OBJECT CONTAINING QUESTIONS AND ANSWERS
+  var ques=[
+    {
+      question: "Which is my favourite TV series",
+      answer:"Friends"
+    },
+    {
+      question:"Where do I live",
+      answer:"Delhi"
+    },
+    {
+      question:"What is my favourite Sabzi",
+      answer:"Kadhai Paneer"
+    },
+    {
+      question:"What is my favourite hobby",
+      answer:"Singing"
+    }
+
+  ]
+  //FUNCTION FOR COMPARISON OF ANSWERS
 function QuizOne(question,answer)
 {
   userAnswer=readlinesync.question(question);
@@ -36,40 +58,15 @@ function QuizOne(question,answer)
    }
 }
 
-QuizOne("Which is my favourite TV series\n","Friends");
-QuizOne("Where do I live\n","Delhi");
-QuizOne("What is my favourite Sabzi\n","Kadhai Paneer");
-QuizOne("What is my favourite hobby\n","Singing");
-console.log("Your final score is\n "+score);
-
-for (var i=0;i<friends.length;i++)
+for(var i=0;i<ques.length;i++)
 {
-  if (score>=friends[i].score)
-  { s=i+1
-    console.log(chalk.cyan(user+" your rank is "+s))
-    if (i==friends.length-1)
-    {
-      console.log("You have the lowest score");
-    }
-    if (i==0)
-    {
-      console.log("You have the highest score");
-    }
-    else
-    { console.log("Your score is higher than");
-      for(var x=i;x<friends.length;x++)
-        {
-          console.log(chalk.yellow(friends[x].name));
-        }
-      console.log("Your score is lower than");
-      for(var x=0;x<i;x++)
-        {
-          console.log(chalk.yellow(friends[x].name));
-        }
-      
-    }
-    break;
-  }
+  QuizOne(ques[i].question,ques[i].answer);
 }
+console.log("Your final score is\n "+score);
+console.log("Other scores are \n ");
 
+for(var j=0;j<friends.length;j++)
+{
+  console.log(chalk.yellow(friends[j].name +" "+ friends[j].score));
+}
 console.log(chalk.blue("~~~~~~THANKS FOR PLAYING~~~~~~~~~"));
